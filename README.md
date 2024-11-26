@@ -4,7 +4,7 @@ __Organization of the repository__
 
 
 1) cmalight.py -> CMA Light code, from the pre-print https://arxiv.org/abs/2307.15775
-2) FCMA.py -> Fast-CMA
+2) FCMA.py -> Fast-CMA, from the pre-print available at https://arxiv.org/html/2411.15795v1
 3) main.py -> main file
 4) network.py -> Wrapper for the different models
 5) utils.py -> Utility functions
