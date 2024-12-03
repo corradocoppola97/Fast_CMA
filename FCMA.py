@@ -114,7 +114,7 @@ class F_CMA(torch.optim.Optimizer):
         alpha = zeta * eta
         nfev = 0
         sample_model = copy.deepcopy(mod.to(device))
-        real_loss = closure(dl_train,sample_model,criterion,device, probabilistic=True)
+        real_loss = closure(dl_train,sample_model,criterion,device, probabilistic=False) #Compute the real loss before entering the EDFL loop
 
         if norm_d_k is None: norm_d_k = torch.linalg.norm(d_k)
 
@@ -132,7 +132,7 @@ class F_CMA(torch.optim.Optimizer):
                 param.copy_(w_prova[idx:idx + param.numel()].reshape(param.shape))
                 idx += param.numel()
 
-        cur_loss = closure(dl_train,sample_model,criterion,device, probabilistic=True)
+        cur_loss = closure(dl_train,sample_model,criterion,device, probabilistic=True) #Notice that here we use the approximating model \psi as described in the paper
         print(f'cur loss = {cur_loss}')
         nfev += 1
 
@@ -150,7 +150,7 @@ class F_CMA(torch.optim.Optimizer):
                 for param in sample_model.parameters():
                     param.data.copy_(w_prova[idxx:idxx + param.numel()].view(param.shape))
                     idxx += param.numel()
-            cur_loss = closure(dl_train, sample_model, criterion, device, probabilistic=True)
+            cur_loss = closure(dl_train, sample_model, criterion, device, probabilistic=True) #Notice that here we use the approximating model \psi as described in the paper
             nfev += 1
             idx += 1
 
