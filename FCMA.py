@@ -18,9 +18,9 @@ def set_w(model, w):
 class F_CMA(torch.optim.Optimizer):
 
     def __init__(self, params,
-                 zeta=1e-3,
-                 theta=1e-3,
-                 delta=1e-3,
+                 zeta=1e-2,
+                 theta=0.5,
+                 delta=0.9,
                  gamma=1e-3,
                  tau=1e-2,
                  verbose=False,
