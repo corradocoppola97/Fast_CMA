@@ -21,7 +21,7 @@ class F_CMA(torch.optim.Optimizer):
                  zeta=1e-2,
                  theta=0.5,
                  delta=0.9,
-                 gamma=1e-3,
+                 gamma=1e-6,
                  tau=1e-2,
                  verbose=False,
                  max_it_EDFL=100,
