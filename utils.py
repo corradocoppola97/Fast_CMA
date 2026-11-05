@@ -17,7 +17,8 @@ def closure(data_loader: torch.utils.data.DataLoader,
             criterion: torch.nn,
             device: Union[torch.device,str],
             probabilistic = False,
-            probabilistic_k = 50):
+            probabilistic_k = 50,
+            regularization_weight = 0.0):
     
     loss = 0
     model.eval()
@@ -37,7 +38,7 @@ def closure(data_loader: torch.utils.data.DataLoader,
                 batch_loss = criterion(y_pred, y)
                 loss += batch_loss.item() * (len(x) / (probabilistic_k * data_loader.batch_size))
 
-    return loss
+    return loss + regularization_weight * sum(torch.sum(param ** 2) for param in model.parameters())
 
 
 

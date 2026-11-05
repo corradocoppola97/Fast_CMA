@@ -227,8 +227,7 @@ class F_CMA(torch.optim.Optimizer):
                         f_after = phi
                         history['Exit'].append('15c')
                 else:  # Perform step 16, the LS is a total success, we accept alpha and do not reduce zeta
-                    f_after = f_after_LS
-                    self.set_zeta(alpha)
+                    f_after = phi
                     history['Exit'].append('16')
 
             # We set w_k+1 = w + alpha*d
